@@ -1,6 +1,8 @@
 #version 130
 
-#define background_opacity $background_opacity 
+#define background_opacity $background_opacity
+#define gate_x $gate_x 
+#define gate_y $gate_y 
 
 void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
     fragCoord=fragCoord/iResolution.xy;
@@ -11,5 +13,7 @@ void mainImage( out vec4 fragColor, in vec2 fragCoord ) {
 
     fragColor.rgb=getRGB(fragCoord.x)*fragColor.a;
 
-    fragColor.a+=background_opacity;
+    float baseX = fragCoord.x>.5?2*fragCoord.x-1:1-2*fragCoord.x;
+    float baseY = fragCoord.y>.5?2*fragCoord.y-1:1-2*fragCoord.y;
+    fragColor.a+=(background_opacity*(baseX>gate_x?sin(1-baseX)/sin(1-gate_x):1)*(baseY>gate_y?1:sin(baseY)/sin(gate_y)));
 }

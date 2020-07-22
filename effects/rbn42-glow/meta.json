@@ -3,5 +3,13 @@
         "name": "background_opacity",
         "default": 0.7,
         "type": "double"
+    },{
+        "name": "gate_x",
+        "default": 0.9,
+        "type": "double"
+    },{
+        "name": "gate_y",
+        "default": 0.8,
+        "type": "double"
     }]
 }
